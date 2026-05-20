@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f6fb;
+    color: #1b2430;
+}
+
+.app-shell {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.hidden {
+    display: none;
+}
+
+.topbar,
+.panel-header,
+.form-row,
+.project-card-head,
+.task-card-head,
+.task-meta,
+.project-members {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.workspace-grid,
+.auth-grid,
+.stats-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.auth-grid,
+.workspace-grid {
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.stats-grid {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    margin-bottom: 20px;
+}
+
+.panel,
+.form-card,
+.stat-card,
+.project-card,
+.task-card {
+    background: #ffffff;
+    border: 1px solid #d9e0ea;
+    border-radius: 8px;
+    padding: 18px;
+}
+
+.auth-panel {
+    margin-top: 40px;
+}
+
+.stack-form {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+label {
+    display: grid;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+input,
+textarea,
+select,
+button {
+    font: inherit;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #c8d1dd;
+    border-radius: 6px;
+    background: #fff;
+}
+
+button {
+    border: 0;
+    border-radius: 6px;
+    padding: 10px 14px;
+    background: #2563eb;
+    color: #fff;
+    cursor: pointer;
+}
+
+button.secondary {
+    background: #475569;
+}
+
+.list {
+    display: grid;
+    gap: 12px;
+}
+
+.badge {
+    padding: 4px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge.todo { background: #e2e8f0; color: #334155; }
+.badge.in_progress { background: #dbeafe; color: #1d4ed8; }
+.badge.done { background: #dcfce7; color: #15803d; }
+.badge.high { background: #fee2e2; color: #b91c1c; }
+.badge.medium { background: #fef3c7; color: #b45309; }
+.badge.low { background: #d1fae5; color: #047857; }
+
+.muted {
+    color: #5b6878;
+    font-size: 14px;
+}
+
+.demo-note {
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    color: #475569;
+}
+
+.project-members,
+.task-meta {
+    flex-wrap: wrap;
+}
+
+.inline-actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.inline-actions select,
+.inline-actions button {
+    width: auto;
+}
+
+.message {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #111827;
+    color: #fff;
+    padding: 12px 14px;
+    border-radius: 6px;
+}
+
+@media (max-width: 720px) {
+    .app-shell {
+        padding: 16px;
+    }
+
+    .topbar,
+    .panel-header,
+    .form-row,
+    .project-card-head,
+    .task-card-head {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+}

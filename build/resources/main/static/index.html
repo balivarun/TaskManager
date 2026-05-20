@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Task Manager</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<main class="app-shell">
+    <section id="auth-panel" class="panel auth-panel">
+        <div class="panel-header">
+            <div>
+                <h1>Team Task Manager</h1>
+                <p>Projects, assignments, progress.</p>
+            </div>
+        </div>
+        <div class="auth-grid">
+            <form id="login-form" class="form-card">
+                <h2>Login</h2>
+                <label>Email<input type="email" name="email" required></label>
+                <label>Password<input type="password" name="password" required></label>
+                <button type="submit">Login</button>
+            </form>
+            <form id="signup-form" class="form-card">
+                <h2>Signup</h2>
+                <label>Full Name<input type="text" name="fullName" required></label>
+                <label>Email<input type="email" name="email" required></label>
+                <label>Password<input type="password" name="password" minlength="6" required></label>
+                <label>Role
+                    <select name="role">
+                        <option value="ADMIN">Admin</option>
+                        <option value="MEMBER">Member</option>
+                    </select>
+                </label>
+                <button type="submit">Create Account</button>
+            </form>
+        </div>
+        <div class="demo-note">
+            <span>Demo admin:</span> admin@taskmanager.com / admin123
+            <span>Demo member:</span> member@taskmanager.com / member123
+        </div>
+    </section>
+
+    <section id="dashboard-panel" class="hidden">
+        <header class="topbar">
+            <div>
+                <h1>Team Task Manager</h1>
+                <p id="user-meta"></p>
+            </div>
+            <button id="logout-btn" class="secondary">Logout</button>
+        </header>
+
+        <section class="stats-grid" id="stats-grid"></section>
+
+        <section class="workspace-grid">
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Projects</h2>
+                </div>
+                <form id="project-form" class="stack-form admin-only">
+                    <label>Name<input type="text" name="name" required></label>
+                    <label>Description<textarea name="description" rows="3"></textarea></label>
+                    <label>Due Date<input type="date" name="dueDate"></label>
+                    <button type="submit">Save Project</button>
+                </form>
+                <div id="projects-list" class="list"></div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-header">
+                    <h2>Tasks</h2>
+                </div>
+                <form id="task-form" class="stack-form admin-only">
+                    <label>Title<input type="text" name="title" required></label>
+                    <label>Description<textarea name="description" rows="3"></textarea></label>
+                    <div class="form-row">
+                        <label>Status
+                            <select name="status">
+                                <option value="TODO">TODO</option>
+                                <option value="IN_PROGRESS">IN PROGRESS</option>
+                                <option value="DONE">DONE</option>
+                            </select>
+                        </label>
+                        <label>Priority
+                            <select name="priority">
+                                <option value="LOW">LOW</option>
+                                <option value="MEDIUM">MEDIUM</option>
+                                <option value="HIGH">HIGH</option>
+                            </select>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label>Project<select name="projectId" id="task-project-select" required></select></label>
+                        <label>Assignee<select name="assigneeId" id="task-assignee-select"></select></label>
+                    </div>
+                    <label>Due Date<input type="date" name="dueDate"></label>
+                    <button type="submit">Create Task</button>
+                </form>
+                <div id="tasks-list" class="list"></div>
+            </div>
+        </section>
+    </section>
+</main>
+<script src="/app.js"></script>
+</body>
+</html>
