@@ -28,6 +28,7 @@ public class ProjectService {
         this.userService = userService;
     }
 
+    @Transactional(readOnly = true)
     public List<ProjectResponse> findAccessibleProjects(User currentUser) {
         List<Project> projects = currentUser.getRole() == Role.ADMIN
                 ? projectRepository.findAllByOrderByCreatedAtDesc()
@@ -74,6 +75,7 @@ public class ProjectService {
         return toResponse(projectRepository.save(project));
     }
 
+    @Transactional(readOnly = true)
     public Project getAccessibleProject(Long projectId, User currentUser) {
         Project project = getProject(projectId);
         if (currentUser.getRole() == Role.ADMIN || project.getMembers().stream().anyMatch(user -> user.getId().equals(currentUser.getId()))) {
@@ -82,6 +84,7 @@ public class ProjectService {
         throw new ForbiddenException("You do not have access to this project");
     }
 
+    @Transactional(readOnly = true)
     public Project getProject(Long projectId) {
         return projectRepository.findById(projectId)
                 .orElseThrow(() -> new NotFoundException("Project not found"));

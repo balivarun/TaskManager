@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DashboardService {
@@ -26,6 +27,7 @@ public class DashboardService {
         this.taskService = taskService;
     }
 
+    @Transactional(readOnly = true)
     public DashboardResponse getDashboard(User currentUser) {
         if (currentUser.getRole() == Role.ADMIN) {
             Map<String, Long> counts = new HashMap<>();

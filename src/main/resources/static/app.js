@@ -120,6 +120,7 @@ function renderApp() {
   renderProjects();
   renderTasks();
   populateProjectOptions();
+  syncTaskFormState();
 }
 
 function renderStats() {
@@ -211,6 +212,17 @@ function populateAssigneeOptions() {
   taskAssigneeSelect.innerHTML = `<option value="">Unassigned</option>` + members
     .map(member => `<option value="${member.id}">${member.fullName}</option>`)
     .join("");
+}
+
+function syncTaskFormState() {
+  const taskForm = document.getElementById("task-form");
+  const submitButton = taskForm.querySelector("button[type='submit']");
+  const hasProjects = state.projects.length > 0;
+
+  taskProjectSelect.disabled = !hasProjects;
+  taskAssigneeSelect.disabled = !hasProjects;
+  submitButton.disabled = !hasProjects;
+  submitButton.textContent = hasProjects ? "Create Task" : "Create a project first";
 }
 
 async function addMember(projectId, userId) {

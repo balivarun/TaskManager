@@ -27,6 +27,7 @@ public class TaskService {
         this.userService = userService;
     }
 
+    @Transactional(readOnly = true)
     public List<TaskResponse> findTasks(Long projectId, User currentUser) {
         if (projectId != null) {
             Project project = projectService.getAccessibleProject(projectId, currentUser);
@@ -80,6 +81,7 @@ public class TaskService {
         return toResponse(taskRepository.save(task));
     }
 
+    @Transactional(readOnly = true)
     public Task getTask(Long taskId) {
         return taskRepository.findById(taskId).orElseThrow(() -> new NotFoundException("Task not found"));
     }
